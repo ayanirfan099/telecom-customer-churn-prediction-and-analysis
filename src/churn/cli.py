@@ -4,7 +4,7 @@ import json
 from .pipeline import train
 
 
-def main():
+def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--csv", required=True)
     p.add_argument("--output", default="results/telco")

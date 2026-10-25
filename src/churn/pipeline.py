@@ -49,7 +49,9 @@ CATEGORICAL = [
 FEATURES = NUMERIC + CATEGORICAL
 
 
-def validate(frame, target=True):
+def validate(
+    frame: pd.DataFrame, target: bool = True
+) -> pd.DataFrame | tuple[pd.DataFrame, pd.Series]:
     required = FEATURES + (["Churn"] if target else [])
     missing = set(required) - set(frame)
     if missing:
@@ -77,7 +79,7 @@ def validate(frame, target=True):
     return data, y
 
 
-def preprocessor():
+def preprocessor() -> ColumnTransformer:
     return ColumnTransformer(
         [
             (
@@ -92,7 +94,7 @@ def preprocessor():
     )
 
 
-def scores(y, p, threshold=0.5):
+def scores(y, p, threshold: float = 0.5) -> dict:
     p = np.asarray(p, dtype=float)
     pred = p >= threshold
     frac, mean = calibration_curve(y, p, n_bins=8, strategy="quantile")
@@ -109,7 +111,7 @@ def scores(y, p, threshold=0.5):
     }
 
 
-def explain(model, row):
+def explain(model: Pipeline, row: pd.DataFrame) -> dict[str, float]:
     """Local log-odds contributions; available only for logistic regression."""
     estimator = model.named_steps["model"]
     if not hasattr(estimator, "coef_"):
@@ -121,7 +123,7 @@ def explain(model, row):
     )
 
 
-def train(csv, output, seed=42):
+def train(csv: str | Path, output: str | Path, seed: int = 42) -> dict:
     start = perf_counter()
     frame = pd.read_csv(csv)
     x, y = validate(frame)

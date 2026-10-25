@@ -1,0 +1,37 @@
+{
+  "repository": "telecom-customer-churn-prediction-and-analysis",
+  "checks": [
+    {
+      "command": [
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "16 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/workspace/shared/ml-environment/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "....                                                                     [100%]\n4 passed in 7.30s\n",
+      "stderr": ""
+    }
+  ]
+}
