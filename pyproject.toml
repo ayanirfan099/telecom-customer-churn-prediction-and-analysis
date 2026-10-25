@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "churn"
+version = "0.1.0"
+description = "Leakage-resistant telecom churn classification"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26", "pandas>=2.2", "scikit-learn>=1.4", "matplotlib>=3.8", "joblib>=1.3", "streamlit>=1.40", "shap>=0.46"]
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.9"]
+[project.scripts]
+churn = "churn.cli:main"
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+[tool.ruff]
+line-length = 100

@@ -1,0 +1,3 @@
+# Methodology
+
+IBM Telco Customer Churn: 7,043 customers, target Yes/No. Stratified 60/20/20 train/validation/test splitting, seed 42. Customer ID excluded; blank TotalCharges becomes missing and train-median-imputed. One-hot unknown-safe categories, numeric standardization. Compare prior dummy, logistic C={0.1,1}, random forests depth={6,12}, and gradient boosting depth={1,2}. Select model by validation average precision, then threshold by validation F1. Do not refit on validation data, avoiding a changed probability scale after threshold selection. Test is evaluated once after these decisions. Permutation importance uses validation only. Logistic SHAP/log-odds explanations are explicitly separate from the selected model.

@@ -1,0 +1,6 @@
+seed = 42
+train_fraction = 0.6
+validation_fraction = 0.2
+test_fraction = 0.2
+selection_metric = "validation average precision"
+threshold_metric = "validation F1"
